@@ -22,9 +22,6 @@ public class MotorcycleService {
         motorcycles.add(newMotorcycle);
         return newMotorcycle;
     }
-    //TODO : UPDATE MILEAGE ; - done
-    //      MARK VEHICLE AS STOLEN; - done
-
     public void updateMileage (String vin, int modelYear, int mileage) {
         motorcycles.stream()
                 .filter(c -> vin.equals(c.getVin()))

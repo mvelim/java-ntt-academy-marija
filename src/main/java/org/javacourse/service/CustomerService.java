@@ -12,9 +12,6 @@ public class CustomerService {
         return customers;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
-    }
     public Customer registerCustomer (String name, String phoneNumber, String ssn){
         Customer customer = new Customer(name, phoneNumber, ssn);
         customers.add(customer);

@@ -1,4 +1,9 @@
 package org.javacourse.repository;
 
-public class CrudRepository {
+import java.sql.SQLException;
+
+public class CrudRepository extends BaseRepository {
+    protected CrudRepository() throws SQLException {
+    }
+
 }

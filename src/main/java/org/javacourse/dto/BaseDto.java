@@ -1,6 +1,6 @@
 package org.javacourse.dto;
 
-public class BaseDto {
+public abstract class BaseDto {
     private int id;
         public int getId() {
         return id;
