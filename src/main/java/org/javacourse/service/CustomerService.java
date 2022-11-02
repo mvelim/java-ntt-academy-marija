@@ -1,20 +1,26 @@
 package org.javacourse.service;
 
 import org.javacourse.dto.Customer;
+import org.javacourse.repository.CustomerRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CustomerService {
     private List<Customer> customers;
+    private CustomerRepository repo;
 
-    public List<Customer> getCustomerList(){
-        return customers;
+    public CustomerService(CustomerRepository repo) {
+        this.repo = repo;
+    }
+
+    public List<Customer> getAll() {
+        return this.repo.FindAll();
     }
 
     public Customer registerCustomer (String name, String phoneNumber, String ssn){
         Customer customer = new Customer(name, phoneNumber, ssn);
-        customers.add(customer);
+        this.repo.Create(customer);
         return customer;
     }
     public void updateCustomersPhoneNumber (String name, String phoneNumber, String ssn){

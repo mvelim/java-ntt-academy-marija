@@ -1,5 +1,9 @@
 package org.javacourse.dto;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Customer extends BaseDto {
     private String name;
     private String phoneNumber;
@@ -13,6 +17,21 @@ public class Customer extends BaseDto {
     public Customer(int id, String name, String phoneNumber, String ssn) {
         this(name, phoneNumber, ssn);
         super.setId(id);
+    }
+
+    @Override
+    public PreparedStatement getCreateStatement(Connection conn) throws SQLException {
+        PreparedStatement statement = conn.prepareStatement("INSERT INTO CUSTOMER(customer_name, phone_number, ssn) VALUES (?, ?, ?)");
+        statement.setString(1, this.name);
+        statement.setString(2, this.phoneNumber);
+        statement.setString(3, this.ssn);
+        return statement;
+    }
+
+    @Override
+    public PreparedStatement getFindAllStatement(Connection conn) throws SQLException {
+        PreparedStatement statement = conn.prepareStatement("SELECT * FROM CUSTOMER");
+        return statement;
     }
 
     @Override

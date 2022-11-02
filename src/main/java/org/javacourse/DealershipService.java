@@ -1,17 +1,23 @@
 package org.javacourse;
 
+import org.javacourse.db.ConnectionPool;
 import org.javacourse.dto.Customer;
+import org.javacourse.repository.CustomerRepository;
 import org.javacourse.service.CustomerService;
 import org.javacourse.service.MotorcycleService;
 import org.javacourse.service.WarrantyService;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 public class DealershipService
 {
-    public static void main( String[] args ) {
-        CustomerService customerService = new CustomerService();
+    public static void main( String[] args ){
+        ConnectionPool pool = new ConnectionPool();
+
+        CustomerRepository customerRepo = new CustomerRepository(pool);
+        CustomerService customerService = new CustomerService(customerRepo);
         MotorcycleService motorcycleService = new MotorcycleService();
         WarrantyService warrantyService = new WarrantyService();
 
@@ -32,8 +38,14 @@ public class DealershipService
             String entryValue2 = sc.nextLine();
             switch (entryValue2) {
                 case "1":
-                    System.out.println("List of registered customers \n"
-                            + customerService.getCustomerList());
+                    List<Customer> customers = customerService.getAll();
+                    for(int i = 0; i < customers.size(); i++) {
+                        Customer current = customers.get(i);
+                        System.out.printf("NAME: %s  PHONE: %s  SSN: %s \n",
+                                current.getName(),
+                                current.getPhoneNumber(),
+                                current.getSsn());
+                    }
                     break;
                 case "2":
                     System.out.println("Enter full name: ");
@@ -46,19 +58,19 @@ public class DealershipService
                     System.out.println("Successfully added " + name + " to the registry");
                     break;
                 case "3":
-                    System.out.println("Choose a customer to update: \n");
-                    List<Customer> customer = customerService.getCustomerList();
-                    for (int i = 0; i < customer.size(); i++) {
-                        System.out.println(i + 1 + ". " + customer.get(i));
-                    }
-                    System.out.println("Select customer to update: ");
-                    String name1 = sc.nextLine();
-                    for (int i = 0; i < customer.size(); i++) {
-                        if (entryValue2.equals(customer.get(i).getName())) {
-
-                            break;
-                        }
-                    }
+//                    System.out.println("Choose a customer to update: \n");
+//                    List<Customer> customer = customerService.getCustomerList();
+//                    for (int i = 0; i < customer.size(); i++) {
+//                        System.out.println(i + 1 + ". " + customer.get(i));
+//                    }
+//                    System.out.println("Select customer to update: ");
+//                    String name1 = sc.nextLine();
+//                    for (int i = 0; i < customer.size(); i++) {
+//                        if (entryValue2.equals(customer.get(i).getName())) {
+//
+//                            break;
+//                        }
+//                    }
             }
         }
              else if (entryValue.equals("2")) {
@@ -74,19 +86,19 @@ public class DealershipService
                 System.out.println("Option 3: Extend warranty");
                 System.out.println("Option 4: Warranty info");
             }else if (entryValue.equals("4")) {
-                System.out.println("Choose a customer to update: \n");
-                List<Customer> customer = customerService.getCustomerList();
-                    for (int i = 0; i < customer.size(); i++) {
-                    System.out.println(i + 1 + ". " + customer.get(i));
-                    }
-                String entryValue2 = sc.nextLine();
-                System.out.println("Select customer to delete: ");
-                for (int i = 0; i < customer.size(); i++) {
-                    if (entryValue2.equals(customer.get(i).getName())) {
-                        customer.remove(customer.get(i));
-                        break;
-                }
-            }
+//                System.out.println("Choose a customer to update: \n");
+//                List<Customer> customer = customerService.getCustomerList();
+//                    for (int i = 0; i < customer.size(); i++) {
+//                    System.out.println(i + 1 + ". " + customer.get(i));
+//                    }
+//                String entryValue2 = sc.nextLine();
+//                System.out.println("Select customer to delete: ");
+//                for (int i = 0; i < customer.size(); i++) {
+//                    if (entryValue2.equals(customer.get(i).getName())) {
+//                        customer.remove(customer.get(i));
+//                        break;
+//                }
+ //           }
         }
     }
 }
