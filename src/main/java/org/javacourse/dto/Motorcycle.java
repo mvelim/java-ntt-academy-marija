@@ -12,15 +12,11 @@ public class Motorcycle extends BaseDto {
         this.mileage = mileage;
         this.stolen = stolen;
     }
-
     public Motorcycle(int id, String vin, int modelYear, int mileage) {
         this(vin, modelYear, mileage, false);
         super.setId(id);
     }
-
-    public Motorcycle() {
-
-    }
+    public Motorcycle() {}
 
     @Override
     public String toString() {
@@ -30,7 +26,6 @@ public class Motorcycle extends BaseDto {
                 ", mileage= " + mileage +
                 ", stolen= " + stolen ;
     }
-
     public String getVin() {
         return vin;
     }

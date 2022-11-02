@@ -9,15 +9,12 @@ import java.util.stream.Collectors;
 public class CustomerService {
     private List<Customer> customers;
     private CustomerRepository repo;
-
     public CustomerService(CustomerRepository repo) {
         this.repo = repo;
     }
-
     public List<Customer> getAll() {
         return this.repo.FindAll();
     }
-
     public Customer registerCustomer (String name, String phoneNumber, String ssn){
         Customer customer = new Customer(name, phoneNumber, ssn);
         this.repo.Create(customer);

@@ -18,31 +18,30 @@ public class Customer extends BaseDto {
         this(name, phoneNumber, ssn);
         super.setId(id);
     }
-
     @Override
     public PreparedStatement getCreateStatement(Connection conn) throws SQLException {
-        PreparedStatement statement = conn.prepareStatement("INSERT INTO CUSTOMER(customer_name, phone_number, ssn) VALUES (?, ?, ?)");
+        PreparedStatement statement = conn.prepareStatement(
+                "INSERT INTO CUSTOMER(customer_name, phone_number, ssn) VALUES (?, ?, ?)");
         statement.setString(1, this.name);
         statement.setString(2, this.phoneNumber);
         statement.setString(3, this.ssn);
         return statement;
     }
-
     @Override
     public PreparedStatement getFindAllStatement(Connection conn) throws SQLException {
         PreparedStatement statement = conn.prepareStatement("SELECT * FROM CUSTOMER");
         return statement;
     }
-
     @Override
     public String toString() {
-        return ("id: " + getId() + "Name: " + name + "Phone Number: " + phoneNumber + "SSN: " + ssn);
+        return ("id: " + getId()
+                + "Name: " + name
+                + "Phone Number: " + phoneNumber
+                + "SSN: " + ssn);
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

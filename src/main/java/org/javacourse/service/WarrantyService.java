@@ -13,7 +13,6 @@ public class WarrantyService {
   private List<Warranty> warrantyList;
   private Date currentDate = new Date();
 
-
     public List<Warranty> getWarrantyList() {
         return warrantyList;
     }
@@ -37,8 +36,6 @@ public class WarrantyService {
 
         return false;
     }
-//    TODO: DELETE WARRANTY; -repository
-
 }
 
 

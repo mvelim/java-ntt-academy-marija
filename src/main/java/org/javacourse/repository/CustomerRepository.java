@@ -15,7 +15,6 @@ public class CustomerRepository extends CrudRepository<Customer> {
     public CustomerRepository(ConnectionPool pool) {
         super(pool);
     }
-
     public List<Customer> FindAll() {
         List<Customer> result = null;
         try {
@@ -26,10 +25,8 @@ public class CustomerRepository extends CrudRepository<Customer> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return result;
     }
-
     @Override
     protected List<Customer> readResultSet(ResultSet set) throws SQLException{
         List<Customer> result = new ArrayList<>();

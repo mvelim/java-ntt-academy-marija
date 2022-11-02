@@ -4,10 +4,17 @@ import java.util.Date;
 
 public class Warranty extends BaseDto {
     private int purchaseNumber;
-
     private Date purchaseDate;
     private int duration;
-
+    public Warranty(int purchaseNumber, Date purchaseDate, int duration) {
+        this.purchaseNumber = purchaseNumber;
+        this.purchaseDate = purchaseDate;
+        this.duration = duration;
+    }
+    public Warranty(int id, int purchaseNumber, Date purchaseDate, int duration) {
+        this(purchaseNumber, purchaseDate, duration);
+        super.setId(id);
+    }
     public Date getPurchaseDate() {
         return purchaseDate;
     }
@@ -15,7 +22,6 @@ public class Warranty extends BaseDto {
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
-
     public int getDuration() {
         return duration;
     }
@@ -30,19 +36,6 @@ public class Warranty extends BaseDto {
     public void setPurchaseNumber(int purchaseNumber) {
         this.purchaseNumber = purchaseNumber;
     }
-
-
-    public Warranty(int purchaseNumber, Date purchaseDate, int duration) {
-        this.purchaseNumber = purchaseNumber;
-        this.purchaseDate = purchaseDate;
-        this.duration = duration;
-    }
-
-    public Warranty(int id, int purchaseNumber, Date purchaseDate, int duration) {
-        this(purchaseNumber, purchaseDate, duration);
-        super.setId(id);
-    }
-
     @Override
     public String toString() {
         return "Warranty: " +
@@ -50,6 +43,4 @@ public class Warranty extends BaseDto {
                 ", purchaseDate= " + purchaseDate +
                 ", duration= " + duration ;
     }
-
-
 }

@@ -8,15 +8,12 @@ import java.util.stream.Collectors;
 
 public class MotorcycleService {
     private List<Motorcycle> motorcycles;
-
     public List<Motorcycle> getMotorcycles() {
         return motorcycles;
     }
-
     public void setMotorcycles(List<Motorcycle> motorcycles) {
         this.motorcycles = motorcycles;
     }
-
     public Motorcycle newMotorcycle (String vin, int modelYear, int mileage){
         Motorcycle newMotorcycle = new Motorcycle(vin, modelYear, mileage, false);
         motorcycles.add(newMotorcycle);
